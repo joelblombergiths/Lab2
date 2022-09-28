@@ -1,11 +1,10 @@
-﻿using System.IO.Pipes;
-using System.Numerics;
+﻿using System.Numerics;
 
 namespace GeometricShapes
 {
     public abstract class Shape
     {
-        private static readonly int _maxDelta = 10;
+        private static readonly int _maxDelta = 100;
         private enum Shapes
         {
             Rectangle,
@@ -35,7 +34,7 @@ namespace GeometricShapes
                     shape = new Rectangle(new Vector2(position.X, position.Y), RandomVector2());
                     break;
                 case Shapes.Square:
-                    shape = new Rectangle(new Vector2(position.X, position.Y), (float)Random.Shared.NextDouble() * 10);
+                    shape = new Rectangle(new Vector2(position.X, position.Y), RandomSize());
                     break;
                 case Shapes.Cuboid:
                     shape = new Cuboid(position, RandomVector3());
@@ -59,6 +58,14 @@ namespace GeometricShapes
                     throw new ArgumentOutOfRangeException("shapeType", "This should probably never happen :S");
             }
 
+            return shape;
+        }
+
+        private static float RandomSize() => (float)Random.Shared.NextDouble() * _maxDelta;
+        private static Vector2 RandomVector2() => new ((float) Random.Shared.NextDouble() * _maxDelta, (float)Random.Shared.NextDouble() * _maxDelta);        
+        private static Vector3 RandomVector3() => new ((float) Random.Shared.NextDouble() * _maxDelta, (float)Random.Shared.NextDouble() * _maxDelta, (float)Random.Shared.NextDouble() * _maxDelta);
+    }
+}
             //Shape shape = shapeType switch
             //{
             //    Shapes.Rectangle => new Rectangle(new Vector2(position.X, position.Y), new Vector2(randomSize.X, randomSize.Y)),
@@ -70,12 +77,3 @@ namespace GeometricShapes
             //    Shapes.Triangle => new Triangle(Vector2.One, Vector2.One * 2, Vector2.One * 4),
             //    _ => throw new ArgumentOutOfRangeException("shapeType", "This should probably never happen :S"),
             //};
-
-            return shape;
-        }
-
-        private static float RandomSize() => (float)Random.Shared.NextDouble() * _maxDelta;
-        private static Vector2 RandomVector2() => new ((float) Random.Shared.NextDouble() * _maxDelta, (float)Random.Shared.NextDouble() * _maxDelta);        
-        private static Vector3 RandomVector3() => new ((float) Random.Shared.NextDouble() * _maxDelta, (float)Random.Shared.NextDouble() * _maxDelta, (float)Random.Shared.NextDouble() * _maxDelta);
-    }
-}

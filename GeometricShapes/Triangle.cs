@@ -12,6 +12,7 @@ namespace GeometricShapes
         private float c;
 
         public override Vector3 Center => new((_p1.X + _p2.X + _p3.X) / 3, (_p1.Y + _p2.Y + _p3.Y) / 3, 0);
+        
         public override float Area 
         {
             get
@@ -23,6 +24,14 @@ namespace GeometricShapes
         public override float Circumference => a + b + c;
 
         public override string ToString() => $"Triangle @({Center.X:f2},{Center.Y:f2}): p1({_p1.X:f2},{_p1.Y:f2}), p2({_p2.X:f2},{_p2.Y:f2}), p3({_p3.X:f2},{_p2.Y:f2})";
+
+        public Triangle(Vector3 center, Vector2 p1, Vector2 p2) : this(p1, p2, new(3 * center.X - p1.X - p2.X, 3 * center.Y - p1.Y - p2.Y))
+        {
+            //cx = (x1 + x2 + x3) / 3
+            //3cx = (x1 + x2 + x3)
+            //3cx - x1 -x2 = x3
+            //Vector2 p3 = new(3 * center.X - p1.X - p2.X, 3 * center.Y - p1.Y - p2.Y);
+        }
 
         public Triangle(Vector2 p1, Vector2 p2, Vector2 p3)
         {

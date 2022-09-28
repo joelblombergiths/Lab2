@@ -11,8 +11,7 @@ namespace GeometricShapes
         private float b;
         private float c;
 
-        public override float Circumference => a + b + c;
-
+        public override Vector3 Center => new((_p1.X + _p2.X + _p3.X) / 3, (_p1.Y + _p2.Y + _p3.Y) / 3, 0);
         public override float Area 
         {
             get
@@ -21,7 +20,8 @@ namespace GeometricShapes
                 return MathF.Sqrt(s * (s - a) * (s - b) * (s - c));
             }
         }
-        public override Vector3 Center => new((_p1.X + _p2.X + _p3.X) / 3, (_p1.Y + _p2.Y + _p3.Y) / 3, 0);
+        public override float Circumference => a + b + c;
+
         public override string ToString() => $"{nameof(Triangle)} @({Center.X},{Center.Y}): p1({_p1.X},{_p1.Y}), p2({_p2.X},{_p2.Y}), p3({_p3.X},{_p2.Y}), Area: {Area}, Circ.: {Circumference}";
 
         public Triangle(Vector2 p1, Vector2 p2, Vector2 p3)

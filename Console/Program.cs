@@ -2,7 +2,7 @@
 
 List<Shape> shapes = new();
 
-Console.WriteLine("20 Random Generated Shapes:");
+Console.WriteLine("20 Randomly Generated Shapes:");
 
 foreach (int _ in Enumerable.Range(0,20))
 {
@@ -21,11 +21,11 @@ float totalTriangleCirc = shapes.Where(s => s is Triangle).Sum(x => ((Triangle)x
 Console.WriteLine($"Total Circumference of all Triangles is {totalTriangleCirc:f2}.");
 Console.WriteLine();
 
-Shape3D shapeWithLargestVolume = (Shape3D)shapes.Where(s => s is Shape3D).OrderByDescending(x => ((Shape3D)x).Volume).First();
+Shape3D shapeWithLargestVolume = (Shape3D)shapes.Where(s => s is Shape3D).OrderByDescending(o => ((Shape3D)o).Volume).First();
 Console.WriteLine($"{shapeWithLargestVolume} has the largest volume with {shapeWithLargestVolume.Volume:f2}.");
 Console.WriteLine();
 
-var count = shapes.GroupBy(s => s.GetType()).Select(x => new { Count = x.Count(), Type = x.Key }).OrderByDescending(c => c.Count).First();
+var count = shapes.GroupBy(s => s.GetType()).Select(x => new { Count = x.Count(), Type = x.Key }).OrderByDescending(o => o.Count).First();
 Console.WriteLine($"Shape \"{count.Type.Name}\" has most instances with {count.Count} in the list.");
 Console.WriteLine();
 

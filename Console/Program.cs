@@ -1,14 +1,33 @@
 ﻿using GeometricShapes;
-using System.Numerics;
 
 List<Shape> shapes = new();
 
-for (int i = 0; i < 10; i++)
-{
-    shapes.Add(Shape.GenerateShape());
-}
+Console.WriteLine("20 Random Generated Shapes:");
 
-foreach (Shape shape in shapes)
+foreach (int _ in Enumerable.Range(0,20))
 {
+    Shape shape = Shape.GenerateShape();
+    shapes.Add(shape);
+    
     Console.WriteLine(shape);
 }
+Console.WriteLine();
+
+float averageArea = shapes.Average(s => s.Area);
+Console.WriteLine($"Average Area of all shapes in the list is {averageArea:f2}.");
+Console.WriteLine();
+
+float totalTriangleCirc = shapes.Where(s => s is Triangle).Sum(x => ((Triangle)x).Circumference);
+Console.WriteLine($"Total Circumference of all Triangles is {totalTriangleCirc:f2}.");
+Console.WriteLine();
+
+Shape3D shapeWithLargestVolume = (Shape3D)shapes.Where(s => s is Shape3D).OrderByDescending(x => ((Shape3D)x).Volume).First();
+Console.WriteLine($"{shapeWithLargestVolume} has the largest volume with {shapeWithLargestVolume.Volume:f2}.");
+Console.WriteLine();
+
+var count = shapes.GroupBy(s => s.GetType()).Select(x => new { Count = x.Count(), Type = x.Key }).OrderByDescending(c => c.Count).First();
+Console.WriteLine($"Shape \"{count.Type.Name}\" has most instances with {count.Count} in the list.");
+Console.WriteLine();
+
+Console.WriteLine("Press the Any key to Exit");
+Console.ReadKey(true);

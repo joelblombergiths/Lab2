@@ -1,6 +1,4 @@
-﻿using System.Numerics;
-
-namespace GeometricShapes
+﻿namespace GeometricShapes
 {
     public abstract class Shape2D : Shape
     {

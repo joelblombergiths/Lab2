@@ -1,15 +1,14 @@
 ﻿using GeometricShapes;
 using System.Numerics;
 
-Rectangle rectangle = new(Vector2.Zero, new Vector2(5.0f, 3.0f));
-Triangle triangle = new(new(0.0f, 0.0f), new(3.0f, 3.0f), new(6.0f, 0.0f));
-Circle circle = new(Vector2.Zero, 3f);
+List<Shape> shapes = new();
 
-Cuboid cuboid = new(Vector3.Zero, 5);
-Sphere sphere = new(Vector3.Zero, 5);
+for (int i = 0; i < 10; i++)
+{
+    shapes.Add(Shape.GenerateShape());
+}
 
-Console.WriteLine(rectangle);
-Console.WriteLine(triangle);
-Console.WriteLine(circle);
-Console.WriteLine(cuboid);
-Console.WriteLine(sphere);
+foreach (Shape shape in shapes)
+{
+    Console.WriteLine(shape);
+}

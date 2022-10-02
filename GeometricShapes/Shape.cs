@@ -55,7 +55,7 @@ namespace GeometricShapes
                     shape = new Triangle(p1, p2, p3);
                     break;
                 default:
-                    throw new ArgumentOutOfRangeException("shapeType", "This should probably never happen :S");
+                    throw new ArgumentOutOfRangeException(nameof(shapeType), shapeType, "Shape not implemented");
             }
 
             return shape;

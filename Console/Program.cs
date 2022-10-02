@@ -29,7 +29,7 @@ do
     Console.WriteLine();
 
     Shape3D shapeWithLargestVolume = (Shape3D)shapes.Where(shape => shape is Shape3D).OrderByDescending(shape => ((Shape3D)shape).Volume).First();
-    Console.WriteLine($"{shapeWithLargestVolume} has the largest volume with {shapeWithLargestVolume.Volume:f2}.");
+    Console.WriteLine($"The {shapeWithLargestVolume} has the largest volume with {shapeWithLargestVolume.Volume:f2}.");
     Console.WriteLine();
 
     var countShapes = shapes.GroupBy(shape => shape.GetType()).Select(group => new { Count = group.Count(), Type = group.Key }).OrderByDescending(group => group.Count).First();

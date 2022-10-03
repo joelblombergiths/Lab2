@@ -2,16 +2,17 @@
 
 Console.CursorVisible = false;
 
-int _numShapes = 20;
+int numShapes = 20;
 
 do
 {
     Console.Clear();
-    Console.WriteLine($"{_numShapes} Randomly Generated Shapes:");
+
+    Console.WriteLine($"{numShapes} Randomly Generated Shapes:");
     Console.WriteLine();
 
     List<Shape> shapes = new();
-    for (int i = 0; i < _numShapes; i++)
+    for (int i = 0; i < numShapes; i++)
     {
         Shape shape = Shape.GenerateShape();
         shapes.Add(shape);
@@ -36,6 +37,6 @@ do
     Console.WriteLine($"Shape \"{countShapes.Type.Name}\" has most instances with {countShapes.Count} in the list.");
     Console.WriteLine();
 
-    Console.WriteLine($"Press the Any key to randomize {_numShapes} new shapes or ESC to Exit.");        
+    Console.WriteLine($"Press the Any key to randomize {numShapes} new shapes or ESC to Exit.");        
 }
 while (Console.ReadKey(true).Key != ConsoleKey.Escape);

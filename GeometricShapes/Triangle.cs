@@ -11,11 +11,7 @@ namespace GeometricShapes
         private float a => (B - C).Length();
         private float b => (C - A).Length();
         private float c => (B - A).Length();
-
-        //private float A => MathF.Sqrt(MathF.Pow(_p2.X - _p1.X, 2) + MathF.Pow(_p2.Y - _p1.Y, 2));
-        //private float B => MathF.Sqrt(MathF.Pow(_p3.X - _p2.X, 2) + MathF.Pow(_p3.Y - _p2.Y, 2));
-        //private float C => MathF.Sqrt(MathF.Pow(_p3.X - _p1.X, 2) + MathF.Pow(_p3.Y - _p1.Y, 2));
-
+       
         public override Vector3 Center => new((A.X + B.X + C.X) / 3, (A.Y + B.Y + C.Y) / 3, 0);
 
         public override float Area
@@ -39,8 +35,3 @@ namespace GeometricShapes
         }
     }
 }
-
-//cx = (x1 + x2 + x3) / 3
-//3cx = (x1 + x2 + x3)
-//3cx - x1 -x2 = x3
-//Vector2 p3 = new(3 * center.X - p1.X - p2.X, 3 * center.Y - p1.Y - p2.Y);

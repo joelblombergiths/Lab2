@@ -5,7 +5,7 @@ namespace GeometricShapes
     public abstract class Shape
     {
         private static readonly Random random = new();
-        private static readonly int maxDelta = 10;
+        private static readonly int max = 10;
 
         private enum Shapes
         {
@@ -21,7 +21,7 @@ namespace GeometricShapes
         public abstract Vector3 Center { get; }
         public abstract float Area { get; }
 
-        public static Shape GenerateShape() => GenerateShape(random.NextVector3(true, maxDelta));
+        public static Shape GenerateShape() => GenerateShape(random.NextVector3(-max, max));
         public static Shape GenerateShape(Vector3 position)
         {
             int randomShape = random.Next(Enum.GetNames(typeof(Shapes)).Length);
@@ -32,26 +32,26 @@ namespace GeometricShapes
             switch (shapeType)
             {
                 case Shapes.Rectangle:
-                    shape = new Rectangle(new Vector2(position.X, position.Y), random.NextVector2(false, maxDelta));
+                    shape = new Rectangle(new Vector2(position.X, position.Y), random.NextVector2(max));
                     break;
                 case Shapes.Square:
-                    shape = new Rectangle(new Vector2(position.X, position.Y), random.NextFloat(false, maxDelta));
+                    shape = new Rectangle(new Vector2(position.X, position.Y), random.NextFloat(max));
                     break;
                 case Shapes.Cuboid:
-                    shape = new Cuboid(position, random.NextVector3(false, maxDelta));
+                    shape = new Cuboid(position, random.NextVector3(max));
                     break;
                 case Shapes.Cube:
-                    shape = new Cuboid(position, random.NextFloat(false, maxDelta));
+                    shape = new Cuboid(position, random.NextFloat(max));
                     break;
                 case Shapes.Circle:
-                    shape = new Circle(new Vector2(position.X, position.Y), random.NextFloat(false, maxDelta));
+                    shape = new Circle(new Vector2(position.X, position.Y), random.NextFloat(max));
                     break;
                 case Shapes.Sphere:
-                    shape = new Sphere(position, random.NextFloat(false, maxDelta));
+                    shape = new Sphere(position, random.NextFloat(max));
                     break;
                 case Shapes.Triangle:
-                    Vector2 p1 = random.NextVector2(true, maxDelta);
-                    Vector2 p2 = random.NextVector2(true, maxDelta);
+                    Vector2 p1 = random.NextVector2(-max, max);
+                    Vector2 p2 = random.NextVector2(-max, max);
                     Vector2 p3 = new(3 * position.X - p1.X - p2.X, 3 * position.Y - p1.Y - p2.Y);
                     shape = new Triangle(p1, p2, p3);
                     break;               

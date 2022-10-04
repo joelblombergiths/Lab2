@@ -2,17 +2,17 @@
 
 namespace GeometricShapes
 {
-    internal static class ExtensionMethods
+    public static class ExtensionMethods
     {
-        public static float NextFloat(this Random random, bool signed, int maxDelta)
-        {
-            double significand = random.NextDouble() * 2.0;
-            if (signed) significand -= 1.0;
-            double exponent = Math.Pow(2.0, random.Next(maxDelta));
-            return (float)(significand * exponent);
-        }
+        public static float NextFloat(this Random random, float max) => random.NextFloat(0, max);
+        public static float NextFloat(this Random random, float min, float max) => random.NextSingle() * (max - min) + min;
 
-        public static Vector2 NextVector2(this Random random, bool signed, int maxDelta) => new(random.NextFloat(signed, maxDelta), random.NextFloat(signed, maxDelta));
-        public static Vector3 NextVector3(this Random random, bool signed, int maxDelta) => new(random.NextVector2(signed, maxDelta), random.NextFloat(signed, maxDelta));
+
+        public static Vector2 NextVector2(this Random random, float max) => random.NextVector2(0, max);
+        public static Vector2 NextVector2(this Random random, float min, float max) => new(random.NextFloat(min, max), random.NextFloat(min, max));
+
+
+        public static Vector3 NextVector3(this Random random, float max) => random.NextVector3(0, max);
+        public static Vector3 NextVector3(this Random random, float min, float max) => new(random.NextVector2(min, max), random.NextFloat(min, max));
     }
 }

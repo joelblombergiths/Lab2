@@ -9,7 +9,7 @@ namespace GeometricShapes
         private Vector3 _center;
         public override Vector3 Center => _center;
 
-        public override float Area => (2 * size.Z * size.X) + (2 * size.Z * size.Y) + (2 * size.Y * size.X);
+        public override float Area => 2 * ((size.Z * size.X) + (size.X * size.Y) + (size.Z * size.Y));
         public override float Volume => size.X * size.Y * size.Z;
         public override string ToString() => $"{(IsCube ? "Cube" : "Cuboid")} @({_center.X:f2}, {_center.Y:f2}): w = {size.X:f2}, h = {size.Y:f2}, l = {size.Z:f2}";
 

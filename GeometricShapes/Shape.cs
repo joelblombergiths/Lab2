@@ -6,6 +6,7 @@ namespace GeometricShapes
     {
         private static readonly Random random = new();
         private static readonly int maxDelta = 10;
+
         private enum Shapes
         {
             Rectangle,
@@ -21,7 +22,6 @@ namespace GeometricShapes
         public abstract float Area { get; }
 
         public static Shape GenerateShape() => GenerateShape(random.NextVector3(true, maxDelta));
-
         public static Shape GenerateShape(Vector3 position)
         {
             int randomShape = random.Next(Enum.GetNames(typeof(Shapes)).Length);

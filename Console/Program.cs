@@ -37,6 +37,6 @@ do
     Console.WriteLine($"Shape \"{countShapes.Type.Name}\" has most instances with {countShapes.Count} in the list.");
     Console.WriteLine();
 
-    Console.WriteLine($"Press the Any key to randomize {numShapes} new shapes or ESC to Exit.");        
+    Console.WriteLine($"Press the Any key to randomize {numShapes} new shapes or ESC to Exit.");
 }
 while (Console.ReadKey(true).Key != ConsoleKey.Escape);

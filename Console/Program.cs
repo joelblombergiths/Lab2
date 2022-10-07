@@ -13,7 +13,7 @@ do
     List<Shape> shapes = new();
     for (int i = 0; i < numShapes; i++)
     {
-        Shape shape = Shape.GenerateShape(System.Numerics.Vector3.Zero);
+        Shape shape = Shape.GenerateShape();
         shapes.Add(shape);
 
         Console.WriteLine(shape);

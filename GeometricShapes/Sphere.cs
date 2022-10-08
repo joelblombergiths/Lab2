@@ -6,17 +6,16 @@ namespace GeometricShapes
     {
         private float radius;
 
-        private Vector3 _center;
-        public override Vector3 Center => _center;
+        public override Vector3 Center { get; }
 
         public override float Area => 4 * MathF.PI * MathF.Pow(radius, 2);
         public override float Volume => 4f / 3f * MathF.PI * MathF.Pow(radius, 3);
 
-        public override string ToString() => $"{ShapeName} @({_center.X:f2}, {_center.Y:f2}, {_center.Z:f2}): r = {radius:f2}";
+        public override string ToString() => $"{ShapeName} @({Center.X:f2}, {Center.Y:f2}, {Center.Z:f2}): r = {radius:f2}";
         
         public Sphere(Vector3 center, float radius)
         {
-            _center = center;
+            Center = center;
             this.radius = radius;
         }
     }

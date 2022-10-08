@@ -25,7 +25,7 @@ namespace GeometricShapes
 
         public override float Circumference => SideA + SideB + SideC;
         
-        public override string ToString() => $"Triangle @({Center.X:f2}, {Center.Y:f2}): p1({vertexA.X:f2}, {vertexA.Y:f2}), p2({vertexB.X:f2}, {vertexB.Y:f2}), p3({vertexC.X:f2}, {vertexC.Y:f2})";
+        public override string ToString() => $"{ShapeName} @({Center.X:f2}, {Center.Y:f2}): p1({vertexA.X:f2}, {vertexA.Y:f2}), p2({vertexB.X:f2}, {vertexB.Y:f2}), p3({vertexC.X:f2}, {vertexC.Y:f2})";
 
         public Triangle(Vector2 p1, Vector2 p2, Vector2 p3)
         {

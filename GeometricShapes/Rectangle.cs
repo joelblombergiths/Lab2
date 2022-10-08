@@ -11,9 +11,10 @@ namespace GeometricShapes
 
         public override float Area => size.X * size.Y;
         public override float Circumference => 2 * (size.X + size.Y);
-        public override string ToString() => $"{(IsSquare ? "Square" : "Rectangle")} @({_center.X:f2}, {_center.Y:f2}): w = {size.X:f2}, h = {size.Y:f2}";
+        public override string ToString() => $"{ShapeName} @({_center.X:f2}, {_center.Y:f2}): w = {size.X:f2}, h = {size.Y:f2}";
 
         public bool IsSquare => size.X == size.Y;
+        public override string ShapeName => IsSquare ? "Square" : "Rectangle";
 
         public Rectangle(Vector2 center, float width) : this(center, new Vector2(width)) { }
         public Rectangle(Vector2 center, Vector2 size)

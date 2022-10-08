@@ -24,16 +24,38 @@ do
     Console.WriteLine($"Average Area of all shapes in the list is {averageArea:f2}.");
     Console.WriteLine();
 
-    float totalTriangleCirc = shapes.Where(shape => shape is Triangle).Sum(shape => ((Triangle)shape).Circumference);
+    float totalTriangleCirc = shapes
+        .OfType<Triangle>()
+        .Sum(shape => shape.Circumference);
+
     Console.WriteLine($"Total Circumference of all Triangles is {totalTriangleCirc:f2}.");
     Console.WriteLine();
 
-    Shape3D shapeWithLargestVolume = (Shape3D)shapes.Where(shape => shape is Shape3D).OrderByDescending(shape => ((Shape3D)shape).Volume).First();
+    Shape3D shapeWithLargestVolume = shapes
+        .OfType<Shape3D>()
+        .OrderByDescending(shape => shape.Volume)
+        .First();
+
     Console.WriteLine($"The {shapeWithLargestVolume} has the largest volume with {shapeWithLargestVolume.Volume:f2}.");
     Console.WriteLine();
 
-    var countShapes = shapes.GroupBy(shape => shape.GetType()).Select(group => new { Count = group.Count(), Type = group.Key }).OrderByDescending(group => group.Count).First();
-    Console.WriteLine($"Shape \"{countShapes.Type.Name}\" has the most instances with {countShapes.Count} in the list.");
+    var countShapes = shapes
+        .GroupBy(shape => shape.ShapeName)
+        .Select(group => new
+        {
+            Count = group.Count(),
+            Type = group.Key
+        })
+        .OrderByDescending(group => group.Count);
+
+    int count = countShapes.First().Count;
+        
+    string[] shapesWithMostCount = countShapes
+        .TakeWhile(shape => shape.Count == count)
+        .Select(shape => shape.Type)
+        .ToArray();
+
+    Console.WriteLine($"Shape(s) {string.Join(" and ",shapesWithMostCount)} has the most instances with {count} in the list.");
     Console.WriteLine();
 
     Console.WriteLine($"Press the Any key to randomize {numShapes} new shapes or ESC to Exit.");
